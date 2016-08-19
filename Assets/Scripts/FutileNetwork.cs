@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FutileNetwork : MonoBehaviour {
     public static FutileNetwork instance;
+    public static System.Random rand;
+    private Page _currentPage;
 
 
 	// Use this for initialization
@@ -16,13 +18,22 @@ public class FutileNetwork : MonoBehaviour {
 
         Futile.instance.Init(fparams);
         Futile.atlasManager.LoadAtlas("Atlases/atlas");
+        rand = new System.Random(System.DateTime.Now.Millisecond);
 
-        FSprite box = new FSprite("Box");
-        Futile.stage.AddChild(box);
+
+        LoadTestPage();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        _currentPage.Update();
 	}
+
+    void LoadTestPage()
+    {
+        if (_currentPage != null) _currentPage.RemoveFromContainer();
+
+        _currentPage = new TestPage();
+        Futile.stage.AddChild(_currentPage);
+    }
 }
