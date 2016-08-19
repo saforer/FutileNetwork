@@ -28,9 +28,11 @@ public class BattleObject : FSprite {
 
     public void Update()
     {
-        if (Input.GetKeyDown("w"))
+        int wPressed = 0;
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("W Pressed");
+            wPressed++;
+            Debug.Log("W Pressed " + "parent: " + parent.gridX + " " + parent.gridY);
             parent.gm.Move(this);
         }
     }
