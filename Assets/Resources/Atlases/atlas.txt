@@ -1,21 +1,57 @@
 {"frames": {
 
+"AllyTile.png":
+{
+	"frame": {"x":64,"y":0,"w":40,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":25},
+	"sourceSize": {"w":40,"h":25},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Boulder.png":
+{
+	"frame": {"x":0,"y":30,"w":40,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":39},
+	"sourceSize": {"w":40,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "Box.png":
 {
-	"frame": {"x":0,"y":0,"w":20,"h":30},
+	"frame": {"x":104,"y":0,"w":20,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":30},
 	"sourceSize": {"w":20,"h":30},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"Tile.png":
+"EnemyTile.png":
 {
-	"frame": {"x":20,"y":0,"w":40,"h":25},
+	"frame": {"x":24,"y":0,"w":40,"h":25},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":25},
 	"sourceSize": {"w":40,"h":25},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Met.png":
+{
+	"frame": {"x":0,"y":0,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Ninja.png":
+{
+	"frame": {"x":40,"y":30,"w":51,"h":77},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":77},
+	"sourceSize": {"w":51,"h":77},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -23,8 +59,8 @@
 	"version": "1.0",
 	"image": "atlas.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":32},
+	"size": {"w":128,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:f5452ded0f71ee83b6b62616da65b29b:92d92fff2fe7316d857c8165711ed629:b2cf441629818f6c24bd2ce3105f608b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7ef6563fb7cf5e0a820b994a7fa02a3a:900e5f562467ef474d14da5c596e2193:b2cf441629818f6c24bd2ce3105f608b$"
 }
 }

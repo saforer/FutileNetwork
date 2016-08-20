@@ -18,6 +18,38 @@ public class GridManager : FContainer{
         return true;
     }
 
+    public Boolean blockingObject(int x, int y)
+    {
+        foreach (BattleObject bo in battleObjectList)
+        {
+            if (bo.gridX == x && bo.gridY == y)
+            {
+                if (bo.blocking == true)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public Boolean tileMoveable(int x, int y, int team)
+    {
+        if (!isInGrid(x, y)) return false;
+        Tile t = grid[x, y];
+        if (t.team == team) return true;
+        return false;
+    }
+
+    public Boolean moveable(int x, int y, int team)
+    {
+        if (!isInGrid(x, y)) return false;
+        if (!blockingObject(x, y)) return false;
+        if (!tileMoveable(x, y, team)) return false;
+
+        return true;
+    }
+
     public void makeGrid(int x, int y)
     {
         width = x;
@@ -31,7 +63,9 @@ public class GridManager : FContainer{
         {
             for (int y = 0; y < height; y++)
             {
-                Tile t = new Tile(this, x, y);
+                int team = 0;
+                if (x >= 3) team = 1;
+                Tile t = new Tile(this, x, y, team);
                 grid[x, y] = t;
                 AddChild(t);
             }

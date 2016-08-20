@@ -20,27 +20,9 @@ public class BattleObject : FSprite {
         y += height / 2;
     }
 
-    public void Update()
+
+    public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && gm.isInGrid(gridX, gridY+1))
-        {
-            gridY++;
-            updatePosition();
-        }
-        if (Input.GetKeyDown(KeyCode.A) && gm.isInGrid(gridX-1, gridY))
-        {
-            gridX--;
-            updatePosition();
-        }
-        if (Input.GetKeyDown(KeyCode.S) && gm.isInGrid(gridX, gridY - 1))
-        {
-            gridY--;
-            updatePosition();
-        }
-        if (Input.GetKeyDown(KeyCode.D) && gm.isInGrid(gridX + 1, gridY))
-        {
-            gridX++;
-            updatePosition();
-        }
+
     }
 }
