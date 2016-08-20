@@ -1,44 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BattleObject : FSprite {
-    Tile parent;
-    int gridX;
-    int gridY; 
-
-    public BattleObject(string Image) : base(Image)
+    public GridManager gm;
+    public Boolean blocking;
+    public int gridX;
+    public int gridY;
+    public BattleObject (string Name, int gridX, int gridY, Boolean blocking) : base(Name)
     {
-
+        this.gridX = gridX;
+        this.gridY = gridY;
+        this.blocking = blocking;
     }
 
-    public void setParent(Tile t)
+    public void updatePosition()
     {
-        parent = t;
-        updatePosition();
-    }
-
-    void updatePosition()
-    {
-        gridX = parent.gridX;
-        gridY = parent.gridY;
-        Vector2 position = parent.gm.gridXYToPosition(gridX, gridY);
-        position.y += (height/2);
-        SetPosition(position);
+        SetPosition(gm.gridXYToPosition(gridX, gridY));
+        y += height / 2;
     }
 
     public void Update()
     {
-        int wPressed = 0;
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && gm.isInGrid(gridX, gridY+1))
         {
-            wPressed++;
-            Debug.Log("W Pressed " + "parent: " + parent.gridX + " " + parent.gridY);
-            parent.gm.Move(this);
+            gridY++;
+            updatePosition();
         }
-    }
-
-    public Tile getParent()
-    {
-        return parent;
+        if (Input.GetKeyDown(KeyCode.A) && gm.isInGrid(gridX-1, gridY))
+        {
+            gridX--;
+            updatePosition();
+        }
+        if (Input.GetKeyDown(KeyCode.S) && gm.isInGrid(gridX, gridY - 1))
+        {
+            gridY--;
+            updatePosition();
+        }
+        if (Input.GetKeyDown(KeyCode.D) && gm.isInGrid(gridX + 1, gridY))
+        {
+            gridX++;
+            updatePosition();
+        }
     }
 }

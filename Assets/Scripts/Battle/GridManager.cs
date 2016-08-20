@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GridManager : FContainer{
+    List<BattleObject> battleObjectList = new List<BattleObject>();
     Tile[,] grid;
     int width;
     int height;
@@ -46,32 +48,27 @@ public class GridManager : FContainer{
         return output;
     }
 
-    public void addObject(BattleObject b, int gridX, int gridY)
+    public void addObject(BattleObject b)
     {
-        Tile t = grid[gridX, gridY];
-        if (t.heldObject != null) return;
-        t.heldObject = b;
-        b.setParent(t);
-        AddChild(b);
+        if (isInGrid(b.gridX, b.gridY))
+        {
+            b.gm = this;
+            b.updatePosition();
+            battleObjectList.Add(b);
+            AddChild(b);
+        }
     }
 
     public void Update()
     {
-        foreach (Tile t in grid) {
+        foreach (BattleObject b in battleObjectList)
+        {
+            b.Update();
+        }
+        foreach (Tile t in grid)
+        {
             t.Update();
         }
-    }
 
-    public void Move(BattleObject b)
-    {
-        Tile t = b.getParent();
-        int x = t.gridX;
-        int y = t.gridY + 1;
-
-        if (!isInGrid(x, y)) return;
-        Tile tG = grid[x, y];
-        if (tG.heldObject != null) return;
-        tG.heldObject = t.heldObject;
-        b.setParent(tG);
     }
 }

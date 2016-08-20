@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Tile : FSprite {
     public GridManager gm;
-    public BattleObject heldObject;
     public int gridX;
     public int gridY;
 
@@ -17,6 +16,6 @@ public class Tile : FSprite {
 
     public void Update()
     {
-        if (heldObject != null) heldObject.Update();
+
     }
 }

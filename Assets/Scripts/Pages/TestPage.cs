@@ -10,7 +10,7 @@ public class TestPage : Page
         gm.makeGrid(6, 3);
         gm.fillGrid();
         AddChild(gm);
-        gm.addObject(new BattleObject("Box"), 0, 0);
+        gm.addObject(new BattleObject("Box", 2, 1, true));
     }
 
 
