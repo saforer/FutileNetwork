@@ -11,6 +11,7 @@ public class BattleObject : FSprite {
     {
         this.gridX = gridX;
         this.gridY = gridY;
+        this.sortZ = 2 - gridY;
         this.blocking = blocking;
     }
 
@@ -18,6 +19,7 @@ public class BattleObject : FSprite {
     {
         SetPosition(gm.gridXYToPosition(gridX, gridY));
         y += height / 2;
+        this.sortZ = 2 - gridY;
     }
 
 

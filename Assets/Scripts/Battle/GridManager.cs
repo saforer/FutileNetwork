@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 public class GridManager : FContainer{
     List<BattleObject> battleObjectList = new List<BattleObject>();
+    List<Projectile> projectileList = new List<Projectile>();
     Tile[,] grid;
     int width;
     int height;
 
     public Boolean isInGrid(int x, int y)
     {
+
         if (x < 0) return false;
         if (y < 0) return false;
         if (x > width-1) return false;
@@ -64,12 +66,24 @@ public class GridManager : FContainer{
             for (int y = 0; y < height; y++)
             {
                 int team = 0;
-                if (x >= 3) team = 1;
+                if (x >= (width / 2)) team = 1;
                 Tile t = new Tile(this, x, y, team);
                 grid[x, y] = t;
                 AddChild(t);
             }
         }
+    }
+
+    public int positionToGridX(float worldX)
+    {
+        int output = Mathf.FloorToInt(worldX);
+        output -= 20;
+        return 0;
+    }
+
+    public int positionToGridY(float worldY)
+    {
+        return 0;
     }
 
     public Vector2 gridXYToPosition(int gridX, int gridY)
@@ -93,16 +107,25 @@ public class GridManager : FContainer{
         }
     }
 
+    public void makeProjectile(Projectile p)
+    {
+        projectileList.Add(p);
+        AddChild(p);
+    }
+
     public void Update()
     {
         foreach (BattleObject b in battleObjectList)
         {
             b.Update();
         }
+        foreach (Projectile p in projectileList)
+        {
+            p.Update();
+        }
         foreach (Tile t in grid)
         {
             t.Update();
         }
-
     }
 }

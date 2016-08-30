@@ -13,25 +13,33 @@ public class Mob : BattleObject
     override
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && gm.moveable(gridX, gridY + 1, team))
+        if (team == 0)
         {
-            gridY++;
-            updatePosition();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && gm.moveable(gridX - 1, gridY, team))
-        {
-            gridX--;
-            updatePosition();
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && gm.moveable(gridX, gridY - 1, team))
-        {
-            gridY--;
-            updatePosition();
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && gm.moveable(gridX + 1, gridY, team))
-        {
-            gridX++;
-            updatePosition();
+            if (Input.GetKeyDown(KeyCode.UpArrow) && gm.moveable(gridX, gridY + 1, team))
+            {
+                gridY++;
+                updatePosition();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && gm.moveable(gridX - 1, gridY, team))
+            {
+                gridX--;
+                updatePosition();
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow) && gm.moveable(gridX, gridY - 1, team))
+            {
+                gridY--;
+                updatePosition();
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow) && gm.moveable(gridX + 1, gridY, team))
+            {
+                gridX++;
+                updatePosition();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                gm.makeProjectile(new TestProjectile(this));
+            }
         }
     }
 }

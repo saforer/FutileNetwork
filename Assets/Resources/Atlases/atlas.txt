@@ -11,7 +11,7 @@
 },
 "Boulder.png":
 {
-	"frame": {"x":0,"y":30,"w":40,"h":39},
+	"frame": {"x":20,"y":29,"w":40,"h":39},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":39},
@@ -20,7 +20,7 @@
 },
 "Box.png":
 {
-	"frame": {"x":104,"y":0,"w":20,"h":30},
+	"frame": {"x":0,"y":29,"w":20,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":30},
@@ -47,11 +47,20 @@
 },
 "Ninja.png":
 {
-	"frame": {"x":40,"y":30,"w":51,"h":77},
+	"frame": {"x":60,"y":29,"w":51,"h":77},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":77},
 	"sourceSize": {"w":51,"h":77},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Wheelie.png":
+{
+	"frame": {"x":104,"y":0,"w":24,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":29},
+	"sourceSize": {"w":24,"h":29},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -61,6 +70,6 @@
 	"format": "RGBA8888",
 	"size": {"w":128,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7ef6563fb7cf5e0a820b994a7fa02a3a:900e5f562467ef474d14da5c596e2193:b2cf441629818f6c24bd2ce3105f608b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:0ffab113cf404d2c89b8fd8cef5b4133:c8ad56a608e142352f4a4d70765cd366:b2cf441629818f6c24bd2ce3105f608b$"
 }
 }
