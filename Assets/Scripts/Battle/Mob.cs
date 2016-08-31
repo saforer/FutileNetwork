@@ -3,7 +3,6 @@ using System;
 
 public class Mob : BattleObject
 {
-    int team;
     public Mob(String Name, int gridX, int gridY, Boolean blocking, int team) : base(Name, gridX, gridY, blocking)
     {
         this.team = team;

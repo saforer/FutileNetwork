@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 public class GridManager : FContainer{
     List<BattleObject> battleObjectList = new List<BattleObject>();
+    List<BattleObject> toRemoveBattle = new List<BattleObject>();
     List<Projectile> projectileList = new List<Projectile>();
+    List<Projectile> toRemoveProjectile = new List<Projectile>();
     Tile[,] grid;
     int width;
     int height;
@@ -74,15 +76,38 @@ public class GridManager : FContainer{
         }
     }
 
+    public Boolean isWorldOverGrid(Vector2 pos, float height)
+    {
+        float minWorldCoordinateX = -(40 * (width/2)) + Futile.screen.halfWidth;
+        float maxWorldCoordinateX = (40 * (width/2)) + Futile.screen.halfWidth;
+        float minWorldCoordinateY = 0f;
+        float maxWorldCoordinateY = (25 * height);
+
+        if (pos.x > minWorldCoordinateX &&  pos.x < maxWorldCoordinateX)
+        {
+            if (pos.y-(height/2) > minWorldCoordinateY && pos.y-(height/2) < maxWorldCoordinateY) return true;
+        }
+
+        return false;
+    }
+
     public int positionToGridX(float worldX)
     {
-        int output = Mathf.FloorToInt(worldX);
-        output -= 20;
+        float tileWidth = 40f;
+        if (worldX > (tileWidth * 0) && worldX < tileWidth * 1) return 0;
+        if (worldX > (tileWidth * 1) && worldX < tileWidth * 2) return 1;
+        if (worldX > (tileWidth * 2) && worldX < tileWidth * 3) return 2;
+        if (worldX > (tileWidth * 3) && worldX < tileWidth * 4) return 3;
+        if (worldX > (tileWidth * 4) && worldX < tileWidth * 5) return 4;
+        if (worldX > (tileWidth * 5) && worldX < tileWidth * 6) return 5;
         return 0;
     }
 
     public int positionToGridY(float worldY)
     {
+        if (worldY > 0 && worldY < 25f) return 0;
+        if (worldY > 26f && worldY < 50f) return 1;
+        if (worldY > 51f && worldY < 75f) return 2;
         return 0;
     }
 
@@ -90,7 +115,9 @@ public class GridManager : FContainer{
     {
         Vector2 output = new Vector2(0,0);
 
-        output.x += 20f + (40 * gridX);
+        output.x += 20f + (40 * gridX) + Futile.screen.halfWidth;
+        float pixelWidth = width * 40;
+        output.x -= pixelWidth / 2;
         output.y += 12.5f + (25 * gridY);
 
         return output;
@@ -109,8 +136,15 @@ public class GridManager : FContainer{
 
     public void makeProjectile(Projectile p)
     {
+        p.gm = this;
         projectileList.Add(p);
         AddChild(p);
+    }
+
+    public void destroyObject(Projectile p)
+    {
+        RemoveChild(p);
+        toRemoveProjectile.Add(p);
     }
 
     public void Update()
@@ -127,5 +161,39 @@ public class GridManager : FContainer{
         {
             t.Update();
         }
+        //Check for collisions
+        foreach (BattleObject b in battleObjectList) {
+            foreach (BattleObject b2 in battleObjectList)
+            {
+                if (b != b2)
+                {
+                    if (b.gridX == b2.gridX && b.gridY == b2.gridY)
+                    {
+                        if (b.blocking || b2.blocking)
+                        {
+                            b.collisionWithBO(b2);
+                            b2.collisionWithBO(b);
+                        }
+                    }
+                }
+            }
+
+            foreach (Projectile p in projectileList)
+            {
+                if (b.gridX == p.gridX && b.gridY == p.gridY)
+                {
+                    if (b.team != p.owner.team)
+                    {
+                        b.collisionWithPro(p);
+                        p.collisionWithBO(b);
+                    }
+                }
+            }
+        }
+        foreach (Projectile p in toRemoveProjectile)
+        {
+            projectileList.Remove(p);
+        }
+        toRemoveProjectile.Clear();
     }
 }
