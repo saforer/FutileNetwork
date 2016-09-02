@@ -76,7 +76,7 @@ public class GridManager : FContainer{
         }
     }
 
-    public Boolean isWorldOverGrid(Vector2 pos, float height)
+    public Boolean isWorldOverGrid(Vector2 pos)
     {
         float minWorldCoordinateX = -(40 * (width/2)) + Futile.screen.halfWidth;
         float maxWorldCoordinateX = (40 * (width/2)) + Futile.screen.halfWidth;
@@ -94,13 +94,8 @@ public class GridManager : FContainer{
     public int positionToGridX(float worldX)
     {
         float tileWidth = 40f;
-        if (worldX > (tileWidth * 0) && worldX < tileWidth * 1) return 0;
-        if (worldX > (tileWidth * 1) && worldX < tileWidth * 2) return 1;
-        if (worldX > (tileWidth * 2) && worldX < tileWidth * 3) return 2;
-        if (worldX > (tileWidth * 3) && worldX < tileWidth * 4) return 3;
-        if (worldX > (tileWidth * 4) && worldX < tileWidth * 5) return 4;
-        if (worldX > (tileWidth * 5) && worldX < tileWidth * 6) return 5;
-        return 0;
+        // Works with a 6 wide, not anything else return Mathf.FloorToInt((worldX / tileWidth));
+        return Mathf.FloorToInt((worldX - (Futile.screen.halfWidth)) / tileWidth) + ((width / 2));
     }
 
     public int positionToGridY(float worldY)

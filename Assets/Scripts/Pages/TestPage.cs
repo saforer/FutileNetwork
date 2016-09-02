@@ -7,12 +7,12 @@ public class TestPage : Page
     public TestPage()
     {
         gm = new GridManager();
-        gm.makeGrid(6, 3);
+        gm.makeGrid(4, 3);
         gm.fillGrid();
         AddChild(gm);
         gm.shouldSortByZ = true;
-        gm.addObject(new Mob("Box", 1, 1, true, 0));
-        gm.addObject(new Mob("Met", 3, 1, true, 1));
+        gm.addObject(new Mob("Box", 0, 0, true, 0));
+        gm.addObject(new Mob("Met", 2, 0, true, 1));
         
         
     }

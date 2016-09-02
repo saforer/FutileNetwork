@@ -14,7 +14,7 @@ public class Mob : BattleObject
     {
         if (team == 0)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && gm.moveable(gridX, gridY + 1, team))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && (gm.moveable(gridX, gridY + 1, team)))
             {
                 gridY++;
                 updatePosition();

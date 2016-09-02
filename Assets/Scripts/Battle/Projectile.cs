@@ -4,6 +4,7 @@ using System;
 public class Projectile : FSprite
 {
     public GridManager gm;
+    public Boolean isOverTiles = true;
     public int gridX = 0;
     public int gridY = 0;
     public BattleObject owner;
@@ -11,12 +12,12 @@ public class Projectile : FSprite
     {
         this.owner = owner;
         SetPosition(this.owner.GetPosition());
-
     }
 
     public void getTileOver()
     {
-        gridX = gm.positionToGridX(x);
+        isOverTiles = gm.isWorldOverGrid(new Vector2(x + (width/2), y - (height/2)));
+        gridX = gm.positionToGridX(x - (width/2));
         gridY = gm.positionToGridY(y - (height/2));
     }
 

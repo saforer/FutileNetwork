@@ -5,15 +5,17 @@ public class TestProjectile : Projectile
 {
     public TestProjectile (BattleObject Owner) : base("Wheelie", Owner)
     {
-        
+        this.owner = Owner;
         SetPosition(this.owner.GetPosition());
     }
 
     override
     public void Update()
     {
-        x += 10f;
-        if (!gm.isWorldOverGrid(this.GetPosition(), height)) gm.destroyObject(this);
+        x += 5f;
+        
+        
         getTileOver();
+        if (!isOverTiles) gm.destroyObject(this);
     }
 }
