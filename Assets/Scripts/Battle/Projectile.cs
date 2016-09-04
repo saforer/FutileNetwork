@@ -8,6 +8,7 @@ public class Projectile : FSprite
     public int gridX = 0;
     public int gridY = 0;
     public BattleObject owner;
+    public int damage = 50;
     public Projectile(String Name, BattleObject owner) : base(Name)
     {
         this.owner = owner;
@@ -33,6 +34,7 @@ public class Projectile : FSprite
 
     public void collisionWithBO(BattleObject b)
     {
-        gm.destroyObject(this);
+        gm.destroyProjectile(this);
+        b.Damage(damage);
     }
 }

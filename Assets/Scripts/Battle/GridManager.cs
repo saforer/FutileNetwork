@@ -136,7 +136,13 @@ public class GridManager : FContainer{
         AddChild(p);
     }
 
-    public void destroyObject(Projectile p)
+    public void destroyObject(BattleObject b)
+    {
+        RemoveChild(b);
+        toRemoveBattle.Add(b);
+    }
+
+    public void destroyProjectile(Projectile p)
     {
         RemoveChild(p);
         toRemoveProjectile.Add(p);
@@ -173,6 +179,8 @@ public class GridManager : FContainer{
                 }
             }
 
+
+
             foreach (Projectile p in projectileList)
             {
                 if (b.gridX == p.gridX && b.gridY == p.gridY)
@@ -185,6 +193,15 @@ public class GridManager : FContainer{
                 }
             }
         }
+
+
+        foreach(BattleObject b in toRemoveBattle)
+        {
+            battleObjectList.Remove(b);
+        }
+        toRemoveBattle.Clear();
+
+
         foreach (Projectile p in toRemoveProjectile)
         {
             projectileList.Remove(p);

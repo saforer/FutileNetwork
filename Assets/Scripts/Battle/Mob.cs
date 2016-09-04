@@ -7,6 +7,7 @@ public class Mob : BattleObject
     {
         this.team = team;
         if (team == 0) this.scaleX = -1f;
+        isDamageable = true;
     }
 
     override

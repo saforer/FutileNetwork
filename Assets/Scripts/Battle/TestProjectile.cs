@@ -16,6 +16,6 @@ public class TestProjectile : Projectile
         
         
         getTileOver();
-        if (!isOverTiles) gm.destroyObject(this);
+        if (!isOverTiles) gm.destroyProjectile(this);
     }
 }
