@@ -6,7 +6,6 @@ public class Mob : BattleObject
     public Mob(String Name, int gridX, int gridY, Boolean blocking, int team) : base(Name, gridX, gridY, blocking)
     {
         this.team = team;
-        if (team == 0) this.scaleX = -1f;
         isDamageable = true;
     }
 

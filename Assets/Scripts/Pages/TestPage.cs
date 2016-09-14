@@ -11,7 +11,7 @@ public class TestPage : Page
         gm.fillGrid();
         AddChild(gm);
         gm.shouldSortByZ = true;
-        gm.addObject(new Mob("Box", 0, 0, true, 0));
+        gm.addObject(new Mob("eightbit", 0, 0, true, 0));
         gm.addObject(new Mob("Met", 2, 0, true, 1));
         
         
