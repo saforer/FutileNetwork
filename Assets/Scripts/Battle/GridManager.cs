@@ -8,6 +8,8 @@ public class GridManager : FContainer
     int width;
     int height;
     Tile[,] tiles;
+    List<BattleObject> battleObjectList = new List<BattleObject>();
+    List<Projectile> projectileObjectList = new List<Projectile>();
 
     public void makeGrid(int width, int height)
     {
@@ -59,13 +61,43 @@ public class GridManager : FContainer
     {
         int objectOffsetZ = 10;
         b.SetPosition(gridToWorld(gridX, gridY));
+        b.gm = this;
         b.y += 9f;
         b.sortZ = gridY + objectOffsetZ;
+        b.gridX = gridX;
+        b.gridY = gridY;
+        battleObjectList.Add(b);
         AddChild(b);
+    }
+
+    public void addProjectile(Projectile p, int gridX, int gridY)
+    {
+        int projectileOffsetZ = 20;
+        p.SetPosition(gridToWorld(gridX, gridY));
+        p.gm = this;
+        p.y += 9f;
+        p.sortZ = gridY + projectileOffsetZ;
+        p.gridX = gridX;
+        p.gridY = gridY;
+        projectileObjectList.Add(p);
+        AddChild(p);
     }
 
     public void Update()
     {
+        //Update enemies&allies&objects
+        foreach (BattleObject b in battleObjectList)
+        {
+            b.Update();
+        }
+        //Update bullets
+        foreach (Projectile p in projectileObjectList)
+        {
+            p.Update();
+        }
+
+        //Check for collisions with bullets&objects
+
 
     }
 }

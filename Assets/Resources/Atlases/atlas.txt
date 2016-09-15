@@ -2,7 +2,7 @@
 
 "AllyTile.png":
 {
-	"frame": {"x":60,"y":1,"w":32,"h":18},
+	"frame": {"x":47,"y":2,"w":32,"h":18},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
@@ -11,7 +11,7 @@
 },
 "customBackground.png":
 {
-	"frame": {"x":1,"y":34,"w":138,"h":12},
+	"frame": {"x":2,"y":47,"w":138,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":138,"h":12},
@@ -20,7 +20,7 @@
 },
 "eightbit.png":
 {
-	"frame": {"x":27,"y":1,"w":32,"h":32},
+	"frame": {"x":80,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -29,7 +29,7 @@
 },
 "EnemyTile.png":
 {
-	"frame": {"x":126,"y":1,"w":32,"h":18},
+	"frame": {"x":179,"y":2,"w":32,"h":18},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
@@ -38,7 +38,7 @@
 },
 "healthBackground.png":
 {
-	"frame": {"x":1,"y":1,"w":25,"h":16},
+	"frame": {"x":21,"y":2,"w":25,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":16},
@@ -47,11 +47,29 @@
 },
 "Met.png":
 {
-	"frame": {"x":93,"y":1,"w":32,"h":32},
+	"frame": {"x":146,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MetalBlade.png":
+{
+	"frame": {"x":2,"y":2,"w":18,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+	"sourceSize": {"w":18,"h":18},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"MetalMan.png":
+{
+	"frame": {"x":113,"y":2,"w":32,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":44},
+	"sourceSize": {"w":32,"h":44},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -59,8 +77,8 @@
 	"version": "1.0",
 	"image": "atlas.png",
 	"format": "RGBA8888",
-	"size": {"w":256,"h":64},
+	"size": {"w":213,"h":61},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:47c4908deff72c28be871d333a0c29a0:069c957df85aa937027d0d8624a41ddc:b2cf441629818f6c24bd2ce3105f608b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:62bea2a63839daf247174393908bc562:78e0e2957ff7ca575145ed1b0e0cd5cb:b2cf441629818f6c24bd2ce3105f608b$"
 }
 }

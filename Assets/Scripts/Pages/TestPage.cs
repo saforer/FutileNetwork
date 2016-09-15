@@ -11,7 +11,7 @@ public class TestPage : Page
         AddChild(gm);
         Player p = new Player();
         gm.addBattleObject(p, 1, 1);
-        gm.addBattleObject(new BattleObject("Met"), 2, 1);
+        gm.addBattleObject(new Met(), 2, 1);
         AddChild(new PlayerHealth(p));
         AddChild(new CustomBar());
     }
