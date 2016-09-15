@@ -13,7 +13,7 @@ public class FutileNetwork : MonoBehaviour {
 
 
         FutileParams fparams = new FutileParams(true, true, false, false);
-        fparams.AddResolutionLevel(240f, 1f, 1f, "");
+        fparams.AddResolutionLevel(192f, 1f, 1f, "");
         fparams.origin = Vector2.zero;
 
         Futile.instance.Init(fparams);

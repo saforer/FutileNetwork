@@ -2,34 +2,25 @@
 
 "AllyTile.png":
 {
-	"frame": {"x":1,"y":131,"w":40,"h":25},
+	"frame": {"x":60,"y":1,"w":32,"h":18},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":25},
-	"sourceSize": {"w":40,"h":25},
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
+	"sourceSize": {"w":32,"h":18},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"Boulder.png":
+"customBackground.png":
 {
-	"frame": {"x":1,"y":91,"w":40,"h":39},
+	"frame": {"x":1,"y":34,"w":138,"h":12},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":39},
-	"sourceSize": {"w":40,"h":39},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"Box.png":
-{
-	"frame": {"x":1,"y":1,"w":20,"h":30},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":30},
-	"sourceSize": {"w":20,"h":30},
+	"spriteSourceSize": {"x":0,"y":0,"w":138,"h":12},
+	"sourceSize": {"w":138,"h":12},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "eightbit.png":
 {
-	"frame": {"x":26,"y":32,"w":32,"h":32},
+	"frame": {"x":27,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -38,38 +29,29 @@
 },
 "EnemyTile.png":
 {
-	"frame": {"x":1,"y":65,"w":40,"h":25},
+	"frame": {"x":126,"y":1,"w":32,"h":18},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":25},
-	"sourceSize": {"w":40,"h":25},
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
+	"sourceSize": {"w":32,"h":18},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"healthBackground.png":
+{
+	"frame": {"x":1,"y":1,"w":25,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":16},
+	"sourceSize": {"w":25,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "Met.png":
 {
-	"frame": {"x":1,"y":32,"w":24,"h":24},
+	"frame": {"x":93,"y":1,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
-	"sourceSize": {"w":24,"h":24},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"Ninja.png":
-{
-	"frame": {"x":1,"y":157,"w":51,"h":77},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":77},
-	"sourceSize": {"w":51,"h":77},
-	"pivot": {"x":0.5,"y":0.5}
-},
-"Wheelie.png":
-{
-	"frame": {"x":22,"y":1,"w":24,"h":29},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":29},
-	"sourceSize": {"w":24,"h":29},
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -77,8 +59,8 @@
 	"version": "1.0",
 	"image": "atlas.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":256},
+	"size": {"w":256,"h":64},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:28c484d9f2582266a7e7ca12665e6dec:1359db0aea05335b8cd37908b271140e:b2cf441629818f6c24bd2ce3105f608b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:47c4908deff72c28be871d333a0c29a0:069c957df85aa937027d0d8624a41ddc:b2cf441629818f6c24bd2ce3105f608b$"
 }
 }

@@ -3,209 +3,69 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GridManager : FContainer{
-    List<BattleObject> battleObjectList = new List<BattleObject>();
-    List<BattleObject> toRemoveBattle = new List<BattleObject>();
-    List<Projectile> projectileList = new List<Projectile>();
-    List<Projectile> toRemoveProjectile = new List<Projectile>();
-    Tile[,] grid;
+public class GridManager : FContainer
+{
     int width;
     int height;
+    Tile[,] tiles;
 
-    public Boolean isInGrid(int x, int y)
+    public void makeGrid(int width, int height)
     {
-
-        if (x < 0) return false;
-        if (y < 0) return false;
-        if (x > width-1) return false;
-        if (y > height-1) return false;
-        return true;
-    }
-
-    public Boolean blockingObject(int x, int y)
-    {
-        foreach (BattleObject bo in battleObjectList)
-        {
-            if (bo.gridX == x && bo.gridY == y)
-            {
-                if (bo.blocking == true)
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    public Boolean tileMoveable(int x, int y, int team)
-    {
-        if (!isInGrid(x, y)) return false;
-        Tile t = grid[x, y];
-        if (t.team == team) return true;
-        return false;
-    }
-
-    public Boolean moveable(int x, int y, int team)
-    {
-        if (!isInGrid(x, y)) return false;
-        if (!blockingObject(x, y)) return false;
-        if (!tileMoveable(x, y, team)) return false;
-
-        return true;
-    }
-
-    public void makeGrid(int x, int y)
-    {
-        width = x;
-        height = y;
-        grid = new Tile[x, y];
+        shouldSortByZ = true;
+        this.width = width;
+        this.height = height;
+        tiles = new Tile[width, height];
+        fillGrid();
     }
 
     public void fillGrid()
     {
-        for (int x = 0; x < width; x++)
+        for (int i = 0; i < width; i++)
         {
-            for (int y = 0; y < height; y++)
+            for (int j = 0; j < height; j++)
             {
-                int team = 0;
-                if (x >= (width / 2)) team = 1;
-                Tile t = new Tile(this, x, y, team);
-                grid[x, y] = t;
-                AddChild(t);
+                //holy crap an actual conditional operator.
+                tiles[i, j] = new Tile(i, j, (i < (width/2))? true : false);
+                drawTile(tiles[i, j]);
+                AddChild(tiles[i, j]);
             }
         }
     }
 
-    public Boolean isWorldOverGrid(Vector2 pos)
+    public void drawTile(Tile t)
     {
-        float minWorldCoordinateX = -(40 * (width/2)) + Futile.screen.halfWidth;
-        float maxWorldCoordinateX = (40 * (width/2)) + Futile.screen.halfWidth;
-        float minWorldCoordinateY = 0f;
-        float maxWorldCoordinateY = (25 * height);
+        t.SetPosition(gridToWorld(t.gridX, t.gridY));
 
-        if (pos.x > minWorldCoordinateX &&  pos.x < maxWorldCoordinateX)
-        {
-            if (pos.y-(height/2) > minWorldCoordinateY && pos.y-(height/2) < maxWorldCoordinateY) return true;
-        }
-
-        return false;
+        t.sortZ = t.gridY;
     }
 
-    public int positionToGridX(float worldX)
+    public Vector2 gridToWorld(int x, int y)
     {
-        float tileWidth = 40f;
-        // Works with a 6 wide, not anything else return Mathf.FloorToInt((worldX / tileWidth));
-        return Mathf.FloorToInt((worldX - (Futile.screen.halfWidth)) / tileWidth) + ((width / 2));
+        int tileWidth = 32;
+        int tileHeight = 18;
+        int halfWidth = 16;
+        int halfHeight = 9;
+
+        //Floats tagged on the end because for whatever reason weird stuff happens if I don't have them. Programming in a nutshell ¯\_(ツ)_/¯
+        float vectX = (x * tileWidth) + halfWidth + .5f + (Futile.screen.halfWidth - halfWidth * width);
+        float vectY = (y * tileHeight) + halfHeight - .5f;
+
+        if (y >= 1) vectY -= y;
+
+        return new Vector2(vectX, vectY);
     }
 
-    public int positionToGridY(float worldY)
+    public void addBattleObject(BattleObject b, int gridX, int gridY)
     {
-        if (worldY > 0 && worldY < 25f) return 0;
-        if (worldY > 26f && worldY < 50f) return 1;
-        if (worldY > 51f && worldY < 75f) return 2;
-        return 0;
-    }
-
-    public Vector2 gridXYToPosition(int gridX, int gridY)
-    {
-        Vector2 output = new Vector2(0,0);
-
-        output.x += 20f + (40 * gridX) + Futile.screen.halfWidth;
-        float pixelWidth = width * 40;
-        output.x -= pixelWidth / 2;
-        output.y += 12.5f + (25 * gridY);
-
-        return output;
-    }
-
-    public void addObject(BattleObject b)
-    {
-        if (isInGrid(b.gridX, b.gridY))
-        {
-            b.gm = this;
-            b.updatePosition();
-            battleObjectList.Add(b);
-            AddChild(b);
-        }
-    }
-
-    public void makeProjectile(Projectile p)
-    {
-        p.gm = this;
-        projectileList.Add(p);
-        AddChild(p);
-    }
-
-    public void destroyObject(BattleObject b)
-    {
-        RemoveChild(b);
-        toRemoveBattle.Add(b);
-    }
-
-    public void destroyProjectile(Projectile p)
-    {
-        RemoveChild(p);
-        toRemoveProjectile.Add(p);
+        int objectOffsetZ = 10;
+        b.SetPosition(gridToWorld(gridX, gridY));
+        b.y += 9f;
+        b.sortZ = gridY + objectOffsetZ;
+        AddChild(b);
     }
 
     public void Update()
     {
-        foreach (BattleObject b in battleObjectList)
-        {
-            b.Update();
-        }
-        foreach (Projectile p in projectileList)
-        {
-            p.Update();
-        }
-        foreach (Tile t in grid)
-        {
-            t.Update();
-        }
-        //Check for collisions
-        foreach (BattleObject b in battleObjectList) {
-            foreach (BattleObject b2 in battleObjectList)
-            {
-                if (b != b2)
-                {
-                    if (b.gridX == b2.gridX && b.gridY == b2.gridY)
-                    {
-                        if (b.blocking || b2.blocking)
-                        {
-                            b.collisionWithBO(b2);
-                            b2.collisionWithBO(b);
-                        }
-                    }
-                }
-            }
 
-
-
-            foreach (Projectile p in projectileList)
-            {
-                if (b.gridX == p.gridX && b.gridY == p.gridY)
-                {
-                    if (b.team != p.owner.team)
-                    {
-                        b.collisionWithPro(p);
-                        p.collisionWithBO(b);
-                    }
-                }
-            }
-        }
-
-
-        foreach(BattleObject b in toRemoveBattle)
-        {
-            battleObjectList.Remove(b);
-        }
-        toRemoveBattle.Clear();
-
-
-        foreach (Projectile p in toRemoveProjectile)
-        {
-            projectileList.Remove(p);
-        }
-        toRemoveProjectile.Clear();
     }
 }

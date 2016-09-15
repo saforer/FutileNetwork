@@ -8,13 +8,12 @@ public class TestPage : Page
     {
         gm = new GridManager();
         gm.makeGrid(4, 3);
-        gm.fillGrid();
         AddChild(gm);
-        gm.shouldSortByZ = true;
-        gm.addObject(new Mob("eightbit", 0, 0, true, 0));
-        gm.addObject(new Mob("Met", 2, 0, true, 1));
-        
-        
+        Player p = new Player();
+        gm.addBattleObject(p, 1, 1);
+        gm.addBattleObject(new BattleObject("Met"), 2, 1);
+        AddChild(new PlayerHealth(p));
+        AddChild(new CustomBar());
     }
 
 
