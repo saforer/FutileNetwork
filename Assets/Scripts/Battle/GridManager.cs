@@ -10,6 +10,7 @@ public class GridManager : FContainer
     Tile[,] tiles;
     List<BattleObject> battleObjectList = new List<BattleObject>();
     List<Projectile> projectileObjectList = new List<Projectile>();
+    List<object> removeThis = new List<object>();
 
     public void makeGrid(int width, int height)
     {
@@ -39,6 +40,35 @@ public class GridManager : FContainer
         t.SetPosition(gridToWorld(t.gridX, t.gridY));
 
         t.sortZ = t.gridY;
+    }
+
+    public Boolean isWorldOverGrid(Vector2 pos)
+    {
+        float minWorldCoordinateX = -(40 * (width / 2)) + Futile.screen.halfWidth;
+        float maxWorldCoordinateX = (40 * (width / 2)) + Futile.screen.halfWidth;
+        float minWorldCoordinateY = 0f;
+        float maxWorldCoordinateY = (25 * height);
+
+        if (pos.x > minWorldCoordinateX && pos.x < maxWorldCoordinateX)
+        {
+            if (pos.y - (height / 2) > minWorldCoordinateY && pos.y - (height / 2) < maxWorldCoordinateY) return true;
+        }
+
+        return false;
+    }
+
+    public Vector2 worldToGrid(Vector2 pos)
+    {
+        float tileWidth = 40f;
+        // Works with a 6 wide, not anything else return Mathf.FloorToInt((worldX / tileWidth));
+        float gridX = Mathf.FloorToInt((pos.x - (Futile.screen.halfWidth)) / tileWidth) + ((width / 2));
+
+        float gridY = 0f;
+        if (pos.y > 0 && pos.y < 25f) gridY = 0f;
+        if (pos.y > 26f && pos.y < 50f) gridY = 1f;
+        if (pos.y > 51f && pos.y < 75f) gridY = 2f;
+        
+        return new Vector2(gridX, gridY);
     }
 
     public Vector2 gridToWorld(int x, int y)
@@ -83,21 +113,115 @@ public class GridManager : FContainer
         AddChild(p);
     }
 
+    public void removeObject(object o)
+    {
+        removeThis.Add(o);
+    }
+
+    public Boolean isInBounds(int x, int y)
+    {
+        if ((x < 0) || (x > width - 1)) return false;
+        if ((y < 0) || (y > height - 1)) return false;
+        return true;
+    }
+
+    public Boolean isAbleToMove(int x, int y)
+    {
+        foreach (BattleObject b in battleObjectList)
+        {
+            if ((b.gridX == x) && (b.gridY == y))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void Move(Directions d, BattleObject b)
+    {
+        int x = b.gridX;
+        int y = b.gridY;
+
+        switch (d)
+        {
+            case Directions.UP:
+                y++;
+                break;
+            case Directions.DOWN:
+                y--;
+                break;
+            case Directions.LEFT:
+                x--;
+                break;
+            case Directions.RIGHT:
+                x++;
+                break;
+        }
+
+        Move(x, y, b);
+    }
+
+    public void Move(int x, int y, BattleObject b)
+    {
+        if (isInBounds(x,y))
+        {
+            if (isAbleToMove(x, y))
+            {
+                b.gridX = x;
+                b.gridY = y;
+                b.updatePos();
+            }
+        }
+    }
+
     public void Update()
     {
         //Update enemies&allies&objects
         foreach (BattleObject b in battleObjectList)
         {
-            b.Update();
+            b.BUpdate();
         }
         //Update bullets
         foreach (Projectile p in projectileObjectList)
         {
-            p.Update();
+            p.PUpdate();
         }
 
         //Check for collisions with bullets&objects
+        foreach (BattleObject b in battleObjectList)
+        {
+            foreach (BattleObject b2 in battleObjectList)
+            {
+                if ((b != b2) && (b.gridX == b2.gridX) && (b.gridY == b2.gridY))
+                {
+                    b.collidedWith(b2);
+                    b2.collidedWith(b);
+                }
+            }
 
+            foreach (Projectile p in projectileObjectList)
+            {
+                if ((b.gridX == p.gridX) && (b.gridY == p.gridY) && (b != p.owner))
+                {
+                    b.collidedWith(p);
+                    p.collidedWith(b);
+                }
+            }
+        }
 
+        //Remove shit if need be
+        foreach (object o in removeThis)
+        {
+            if (o is Projectile)
+            {
+                projectileObjectList.Remove((Projectile) o);
+            }
+
+            if (o is BattleObject)
+            {
+                battleObjectList.Remove((BattleObject)o);
+            }
+            RemoveChild((FSprite)o);
+        }
     }
 }
