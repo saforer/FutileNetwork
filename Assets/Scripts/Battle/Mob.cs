@@ -11,24 +11,9 @@ public class Mob : BattleObject
     {
         if (o is Projectile)
         {
-            Debug.Log("MET WAS HIT");
+            takeDamage((Projectile)o);
             gm.removeObject(o);
         }
-    }
-
-    public void takeDamage(int damageAmount)
-    {
-        hp -= damageAmount;
-        if (hp >= 0)
-        {
-            hp = 0;
-            die();
-        }
-    }
-
-    public void die()
-    {
-        Debug.Log("BLARG I DEAD");
     }
 }
 
@@ -42,6 +27,8 @@ public class Met : Mob
     {
         damageable = true;
         hp = 5;
+        team = 1;
+        enemy = true;
     }
 
     override

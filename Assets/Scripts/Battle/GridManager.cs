@@ -160,6 +160,13 @@ public class GridManager : FContainer
 
         Move(x, y, b);
     }
+    
+    public Boolean tileIsOnTeam(int x, BattleObject b)
+    {
+        int tileTeam = (x < width / 2) ? 0 : 1;
+        if (tileTeam == b.team) return true;
+        return false;
+    }
 
     public void Move(int x, int y, BattleObject b)
     {
@@ -167,12 +174,16 @@ public class GridManager : FContainer
         {
             if (isAbleToMove(x, y))
             {
-                b.gridX = x;
-                b.gridY = y;
-                b.updatePos();
+                if (tileIsOnTeam(x, b))
+                {
+                    b.gridX = x;
+                    b.gridY = y;
+                    b.updatePos();
+                }
             }
         }
     }
+
 
     public void Update()
     {
@@ -223,5 +234,37 @@ public class GridManager : FContainer
             }
             RemoveChild((FSprite)o);
         }
+
+        Boolean winBool = true;
+        //Did we win?
+        foreach (BattleObject b in battleObjectList)
+        {
+            if (b.enemy == true)
+            {
+                winBool = false;
+            }
+        }
+        if (winBool)
+        {
+            win();
+        }
+    }
+
+    public void lose()
+    {
+        FLabel lab = new FLabel("font", "You Lose");
+        lab.x = Futile.screen.width/2;
+        lab.y = Futile.screen.height / 2;
+        lab.sortZ = 100;
+        AddChild(lab);
+    }
+
+    public void win()
+    {
+        FLabel lab = new FLabel("font", "You Win");
+        lab.x = Futile.screen.width / 2;
+        lab.y = Futile.screen.height / 2;
+        lab.sortZ = 100;
+        AddChild(lab);
     }
 }

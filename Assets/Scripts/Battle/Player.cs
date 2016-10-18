@@ -4,8 +4,13 @@ using System;
 
 public class Player : Mob
 {
-
-    public Player() : base("eightbit") { }
+    public PlayerHealth ph;
+    public Player() : base("eightbit")
+    {
+        team = 0;
+        hp = 5;
+    }
+    
 
     public override void BUpdate()
     {
@@ -41,8 +46,18 @@ public class Player : Mob
     {
         if (o is Projectile)
         {
-            Debug.Log("YOU GOT HIT");
+            takeDamage((Projectile)o);
+            ph.updateHealth();
             gm.removeObject(o);
         }
     }
+
+    override
+    public void die()
+    {
+        gm.removeObject(this);
+        gm.lose();
+    }
+
+
 }

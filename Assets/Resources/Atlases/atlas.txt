@@ -2,16 +2,25 @@
 
 "AllyTile.png":
 {
-	"frame": {"x":47,"y":2,"w":32,"h":18},
+	"frame": {"x":22,"y":20,"w":32,"h":18},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
 	"sourceSize": {"w":32,"h":18},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"background.png":
+{
+	"frame": {"x":90,"y":20,"w":24,"h":21},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":21},
+	"sourceSize": {"w":24,"h":21},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "customBackground.png":
 {
-	"frame": {"x":2,"y":47,"w":138,"h":12},
+	"frame": {"x":2,"y":2,"w":138,"h":12},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":138,"h":12},
@@ -20,7 +29,7 @@
 },
 "eightbit.png":
 {
-	"frame": {"x":80,"y":2,"w":32,"h":32},
+	"frame": {"x":116,"y":20,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -29,16 +38,25 @@
 },
 "EnemyTile.png":
 {
-	"frame": {"x":179,"y":2,"w":32,"h":18},
+	"frame": {"x":56,"y":20,"w":32,"h":18},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":18},
 	"sourceSize": {"w":32,"h":18},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"font.png":
+{
+	"frame": {"x":36,"y":54,"w":128,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+	"sourceSize": {"w":128,"h":128},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "healthBackground.png":
 {
-	"frame": {"x":21,"y":2,"w":25,"h":16},
+	"frame": {"x":142,"y":2,"w":25,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":16},
@@ -47,7 +65,7 @@
 },
 "Met.png":
 {
-	"frame": {"x":146,"y":2,"w":32,"h":32},
+	"frame": {"x":150,"y":20,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -56,7 +74,7 @@
 },
 "MetalBlade.png":
 {
-	"frame": {"x":2,"y":2,"w":18,"h":18},
+	"frame": {"x":2,"y":20,"w":18,"h":18},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
@@ -65,7 +83,7 @@
 },
 "MetalMan.png":
 {
-	"frame": {"x":113,"y":2,"w":32,"h":44},
+	"frame": {"x":2,"y":54,"w":32,"h":44},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":44},
@@ -77,8 +95,8 @@
 	"version": "1.0",
 	"image": "atlas.png",
 	"format": "RGBA8888",
-	"size": {"w":213,"h":61},
+	"size": {"w":184,"h":184},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:62bea2a63839daf247174393908bc562:78e0e2957ff7ca575145ed1b0e0cd5cb:b2cf441629818f6c24bd2ce3105f608b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fcab02244b40595896dc6e1abb61fe45:90fd29e5be69a5390d31ca063d2e951a:b2cf441629818f6c24bd2ce3105f608b$"
 }
 }

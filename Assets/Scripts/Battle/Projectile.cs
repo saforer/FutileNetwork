@@ -7,6 +7,7 @@ public class Projectile : FSprite {
     public int gridX;
     public int gridY;
     public BattleObject owner;
+    public int damage;
     public Projectile (string Name) : base (Name) { }
 
     public virtual void PUpdate() { }
@@ -30,6 +31,7 @@ public class TestProjectile : Projectile
     public TestProjectile(BattleObject owner) : base("MetalBlade") {
         faceRight = true;
         this.owner = owner;
+        damage = 1;
     }
 
     override public void PUpdate()
@@ -44,6 +46,7 @@ public class TestEnemyProjectile : Projectile
     {
         faceRight = false;
         this.owner = owner;
+        damage = 1;
     }
 
     override public void PUpdate()

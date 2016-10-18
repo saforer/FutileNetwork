@@ -18,6 +18,7 @@ public class FutileNetwork : MonoBehaviour {
 
         Futile.instance.Init(fparams);
         Futile.atlasManager.LoadAtlas("Atlases/atlas");
+        Futile.atlasManager.LoadFont("font", "font", "Atlases/font", 0, 0);
         rand = new System.Random(System.DateTime.Now.Millisecond);
 
 
